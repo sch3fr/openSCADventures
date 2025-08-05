@@ -21,13 +21,8 @@ module mainBody() {
         translate([mainWidth/2,mainHeight-1-brimSize/2,-1])cylinder(h=10,d=3,center=true, $fn=50);
     };
     translate([0,0,-pLength])cube([mainWidth,2,pLength+10]);
-}
+};
 
-module topThingy() {
-    difference() {
-        translate([0, mainHeight-brimSize, pLength-1])cube([mainWidth, brimSize, 1]);
-        translate([mainWidth/2,mainHeight-1-brimSize/2,-1]) cylinder(h=10, d=5, center = true);
-}
 
 module screwHole() {
         rotate([90,0,0])cylinder(h = 10, d = 3, center = true, $fn=50);
@@ -38,7 +33,17 @@ module notch(){
     translate([0,-1.5,0])cube([3,3,4], center = true);
 };
 
-module screwsAndNotches(){
+module topThingy() {
+    difference() {
+        translate([0, mainHeight-brimSize, pLength-1])cube([mainWidth, brimSize, 1]);
+        translate([mainWidth/2,mainHeight-1-brimSize/2,pLength]) cylinder(h=10, d=5, center = true);
+        translate([notchOffset, mainHeight-brimSize+3, pLength])notch();
+        translate([mainWidth-notchOffset, mainHeight-brimSize+3, pLength])notch();
+    };
+};
+
+
+module bottomScrews(){
     translate([screwOffset, 0, 4])screwHole();
     translate([mainWidth-screwOffset, 0, 4])screwHole();
     translate([screwOffset, 0, -6])screwHole();
@@ -48,7 +53,7 @@ module screwsAndNotches(){
 
 difference() {
     mainBody();
-    screwsAndNotches();
+    bottomScrews();
 };
 
 topThingy();
