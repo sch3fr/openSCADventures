@@ -20,7 +20,7 @@ module mainBody() {
         translate([0,mainHeight-10,0])cube([mainWidth, 10, 2]);
         translate([mainWidth/2,mainHeight-1-brimSize/2,-1])cylinder(h=10,d=3,center=true, $fn=50);
     };
-    translate([0,-2,-10])cube([mainWidth,2,20]);
+    translate([0,-2,-10])cube([mainWidth,2,18]);
 };
 
 
@@ -61,3 +61,8 @@ difference() {
 };
 
 topThingy();
+
+hull(){
+translate([0,-2,7])#cube([mainWidth, 2, 1]);
+translate([0,0,8])#cube([mainWidth, 1, 3]);
+};
