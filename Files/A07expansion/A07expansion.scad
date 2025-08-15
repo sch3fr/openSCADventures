@@ -56,11 +56,25 @@ module bottomScrews(){
 
 };
 
+module bracing() {
+    //braces across
+    translate([0,20,pLength-3])cube([mainWidth,3,3]);
+    translate([0,60,pLength-3])cube([mainWidth,3,3]);
+    translate([0,100,pLength-3])cube([mainWidth,3,3]);
+    translate([0,140,pLength-3])cube([mainWidth,3,3]);
+    translate([0,180,pLength-3])cube([mainWidth,3,3]);
+    
+    //side bracing
+    translate([mainWidth-5, 0, pLength-10])cube([4,103,10]);
+    translate([1, 0, pLength-4])cube([4,103,4]);
+    
+};
+
 module intakeHoles(){
     rotate([0,90,0])translate([-8,10,0])cylinder(h=10, d=3, $fn=50);
     rotate([0,90,0])translate([-8,66,0])cylinder(h=10, d=3, $fn=50);
     rotate([0,90,0])translate([-8,21,-2]){
-        #union(){
+        union(){
             cylinder(h=10, d=14, $fn=100);
             translate([-7,0,0]){
                 cube([14,34,10]);
@@ -79,6 +93,7 @@ difference() {
     intakeHoles();
 };
 
+bracing();
 topThingy();
 
 hull(){
