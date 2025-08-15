@@ -18,7 +18,7 @@ module mainBody() {
     };
     difference() {
         translate([0,mainHeight-10,0])cube([mainWidth, 10, 2]);
-        #translate([mainWidth/2,mainHeight-1-brimSize/2,-1])cylinder(h=10,d=4,center=true, $fn=50);
+        translate([mainWidth/2,mainHeight-1-brimSize/2,-1])cylinder(h=10,d=4,center=true, $fn=50);
     };
     translate([0,-2,-10])cube([mainWidth,2,18]);
 };
@@ -47,22 +47,39 @@ module screwPostAvoidingThing() {
 }
 
 module bottomScrews(){
-    #translate([screwOffset, 0, pLength-5])screwHole();
+    translate([screwOffset, 0, pLength-5])screwHole();
     translate([mainWidth-screwOffset, 0, pLength-5 ])screwHole();
     translate([screwOffset, 0, -6])screwHole();
     translate([mainWidth-screwOffset, 0, -6])screwHole();
 
 };
 
+module intakeHoles(){
+    rotate([0,90,0])translate([-8,10,0])cylinder(h=10, d=3, $fn=50);
+    rotate([0,90,0])translate([-8,66,0])cylinder(h=10, d=3, $fn=50);
+    rotate([0,90,0])translate([-8,21,-2]){
+        #union(){
+            cylinder(h=10, d=14, $fn=100);
+            translate([-7,0,0]){
+                cube([14,34,10]);
+            };
+            translate([0,34,0]){
+                cylinder(h=10, d=14, $fn=100);
+            };
+        };
+    };
+};
+
 difference() {
     mainBody();
     bottomScrews();
     screwPostAvoidingThing();
+    intakeHoles();
 };
 
 topThingy();
 
 hull(){
-translate([0,-2,7])#cube([mainWidth, 2, 1]);
-translate([0,0,8])#cube([mainWidth, 1, 3]);
+translate([0,-2,7])cube([mainWidth, 2, 1]);
+translate([0,0,8])cube([mainWidth, 1, 3]);
 };
