@@ -18,7 +18,9 @@ module mainBody() {
     };
     difference() {
         translate([0,mainHeight-10,0])cube([mainWidth, 10, 2]);
-        #translate([mainWidth/2,mainHeight-1-brimSize/2,-1])cylinder(h=10,d=4,center=true, $fn=50);
+        translate([mainWidth/2+0.5,mainHeight-1-brimSize/2,-1])cylinder(h=10,d=4,center=true, $fn=50);
+        translate([notchOffset, mainHeight-brimSize+3, 0])notch();
+        translate([mainWidth-notchOffset, mainHeight-brimSize+3, 0])notch();
     };
     translate([0,-2,-10])cube([mainWidth,2,18]);
 };
