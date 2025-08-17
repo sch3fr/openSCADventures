@@ -8,7 +8,7 @@ mainHeight = 223;
 mainWidth = 104;
 
 brimSize = 10;
-screwOffset = 11;
+screwOffset = 12;
 notchOffset = 12;
 
 module mainBody() {
@@ -19,6 +19,7 @@ module mainBody() {
     difference() {
         translate([0,mainHeight-10,0])cube([mainWidth, 10, 2]);
         translate([mainWidth/2+0.5,mainHeight-1-brimSize/2,-1])cylinder(h=10,d=4,center=true, $fn=50);
+        translate([mainWidth/2-0.5,mainHeight-1-brimSize/2,-1])cylinder(h=10,d=4,center=true, $fn=50);
         translate([notchOffset, mainHeight-brimSize+3, 0])notch();
         translate([mainWidth-notchOffset, mainHeight-brimSize+3, 0])notch();
     };
@@ -37,7 +38,7 @@ module notch(){
 
 module topThingy() {
     difference() {
-        translate([0, mainHeight-brimSize, pLength-2])cube([mainWidth, brimSize, 2]);
+        #translate([0, mainHeight-brimSize, pLength-1.5])cube([mainWidth, brimSize, 1.5]);
         translate([mainWidth/2,mainHeight-1-brimSize/2,pLength]) cylinder(h=10, d=7, center = true);
         translate([notchOffset, mainHeight-brimSize+3, pLength])notch();
         translate([mainWidth-notchOffset, mainHeight-brimSize+3, pLength])notch();
@@ -83,6 +84,13 @@ module intakeHoles(){
                 cylinder(h=10, d=14, $fn=100);
             };
         };
+    };
+};
+
+module intakeReinforcement() {
+    hull(){
+        translate([]) cube([]);
+        translate([]) cube([]);
     };
 };
 
