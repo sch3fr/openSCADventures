@@ -52,8 +52,8 @@ module screwPostAvoidingThing() {
 module bottomScrews(){
     translate([screwOffset, 0, pLength-5])screwHole();
     translate([mainWidth-screwOffset, 0, pLength-5 ])screwHole();
-    translate([screwOffset, 0, -6])screwHole();
-    translate([mainWidth-screwOffset, 0, -6])screwHole();
+    #translate([screwOffset, 0, -5])screwHole();
+    #translate([mainWidth-screwOffset, 0, -5])screwHole();
 
 };
 
@@ -72,8 +72,8 @@ module bracing() {
 };
 
 module intakeHoles(){
-    rotate([0,90,0])translate([-8,10,0])cylinder(h=10, d=3, $fn=50);
-    rotate([0,90,0])translate([-8,66,0])cylinder(h=10, d=3, $fn=50);
+    rotate([0,90,0])translate([-8,10,0])cylinder(h=10, d=2.5, $fn=50);
+    rotate([0,90,0])translate([-8,66,0])cylinder(h=10, d=2.5, $fn=50);
     rotate([0,90,0])translate([-8,21,-2]){
         union(){
             cylinder(h=10, d=14, $fn=100);
@@ -89,8 +89,8 @@ module intakeHoles(){
 
 module intakeReinforcement() {
     hull(){
-        translate([]) cube([]);
-        translate([]) cube([]);
+        translate([2,10,0]) cube([1,57,0.1]);
+        translate([2,10,0]) cube([0.1,57,1]);
     };
 };
 
@@ -102,6 +102,8 @@ difference() {
 };
 
 bracing();
+intakeReinforcement();
+
 topThingy();
 
 hull(){
